@@ -1,5 +1,6 @@
 const clientID = "7f5d3bc4a5a943f19af817551e63b6be";
 const clientSecret = "145df93edad84a719dc3f5feeb11c809";
+const id = "4H9GNs2XK0RfohZsrSiaLt";
 
 const getAccessToken = async () => {
     const authBasic = btoa(`${clientID}:${clientSecret}`);
@@ -15,6 +16,15 @@ const getAccessToken = async () => {
     const data = await response.json();
     return data.access_token;
 };
+
+playID = "";
+
+const playlistForm = document.getElementById("linkForm");
+playlistForm.addEventListener("submit", async (event) =>{
+  event.preventDefault();
+  playID = document.getElementById("playlistLink").value;
+  await makePieChart();
+})
 
 const getPlaylistDetails = async (access, playlistID, limit = 100) => {
   try {
@@ -44,14 +54,13 @@ const getPlaylistDetails = async (access, playlistID, limit = 100) => {
 };
 
 const main = async () => {
-  id = "4H9GNs2XK0RfohZsrSiaLt";
   const accessToken = await getAccessToken();
-  const playlist = await getPlaylistDetails(accessToken, id);
+  const playlist = await getPlaylistDetails(accessToken, playID);
   return playlist;
 } 
 
 const artistCounts = new Map();  
-(async function() {
+const makePieChart = async function() {
   let artists = [];
   const tracks = await main();
   tracks.forEach(song => {
@@ -99,5 +108,4 @@ const artistChart = new Chart(ctx, {
     data: pieData
 });
 
-})();
-
+};

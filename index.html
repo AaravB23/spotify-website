@@ -2,11 +2,21 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-    </head>
     <body> 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="scr.js"></script>
-        <canvas id="artistChart"></canvas>
+        <h1>Spotify Playlist Artist Distribution</h1>
+        <div id="formDiv">
+            <form id="linkForm">
+                <label for="playlistLink" id="plText">Enter your playlist link: </label>
+                <input type="text" id="playlistLink" name="playlistLink" required>
+                <button type="submit" id="subBut">Submit</button>
+                <br><br><br>
+            </form>
+        </div>
+        <br><br>
+        <div id="pieDiv">
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="scr.js"></script>
+            <canvas id="artistChart"></canvas>
+        </div>
     </body>
 </html>
