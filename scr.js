@@ -63,7 +63,7 @@ const main = async () => {
 } 
 
 const artistCounts = new Map();  
-const makePieChart = async function() {
+const makePieChart = async () => {
   let artists = [];
   const tracks = await main();
   tracks.forEach(song => {
