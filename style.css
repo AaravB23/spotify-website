@@ -13,9 +13,22 @@ h1 {
     color: darkcyan;
 }
 
+#countText {
+    font-size: 15pt;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: darkcyan;
+}
+
 #subBut {
     background-color: darkseagreen;
     padding-top: 3pt;
     border-radius: 12pt;
     font-size: 9pt;
+}
+
+#pieDiv {
+    height: auto;
+    width: 80%;
+    max-width: 1000pt;
+    padding-left: 10%;
 }

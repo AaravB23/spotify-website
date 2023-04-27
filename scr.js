@@ -17,12 +17,15 @@ const getAccessToken = async () => {
     return data.access_token;
 };
 
-playID = "";
+let playID = "";
+let pieCount = 0;
 
 const playlistForm = document.getElementById("linkForm");
 playlistForm.addEventListener("submit", async (event) =>{
   event.preventDefault();
   playID = document.getElementById("playlistLink").value;
+  playID = playID.slice(-22);
+  pieCount = parseInt(document.getElementById("artistCount").value);
   await makePieChart();
 })
 
@@ -83,12 +86,16 @@ const makePieChart = async function() {
   });
   const sortedArtists = new Map([...artistCounts.entries()].sort((a, b) => b[1] - a[1]));
 
+  if(pieCount === 0){
+    pieCount = Array.from(sortedArtists.keys()).length;
+  }
+
   const pieData = {
-    labels: [...sortedArtists.keys()],
+    labels: Array.from(sortedArtists.keys()).slice(0, pieCount),
     datasets: 
     [
         {
-            data: [...sortedArtists.values()],
+            data: Array.from(sortedArtists.values()).slice(0, pieCount),
             backgroundColor: [
                 "#FF6384",
                 "#36A2EB",
@@ -97,7 +104,10 @@ const makePieChart = async function() {
                 "#9C27B0",
                 "#3F51B5",
                 "#607D8B"
-            ]
+            ],
+            borderWidth: 2,
+            hoverOffset: 4,
+            maintainAspectRation: true
         }
     ]
 }
